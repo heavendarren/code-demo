@@ -1,0 +1,69 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+group = 'com.yunxiang'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'com.baomidou:dynamic-datasource-spring-boot-starter:3.5.1'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.1'
+    implementation 'com.baomidou:mybatis-plus-extension:3.5.1'
+    implementation 'com.github.xiaoymin:knife4j-spring-boot-starter:3.0.3'
+//    implementation 'io.swagger:swagger-annotations:3.5.1'
+    implementation 'cn.hutool:hutool-all:5.3.8'
+    implementation 'mysql:mysql-connector-java:8.0.21'
+    implementation 'com.alibaba:druid:1.2.11'
+    implementation 'junit:junit:4.12'
+    implementation 'org.projectlombok:lombok:1.18.18'
+
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'com.h2database:h2:1.4.197'
+    testImplementation 'commons-io:commons-io:2.6'
+    testImplementation 'org.apache.qpid:qpid-broker:6.1.2'
+    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    testImplementation 'org.assertj:assertj-core:3.6.1'
+    testImplementation 'io.projectreactor:reactor-test'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'checkstyle'
+
+checkstyle {
+    ignoreFailures = false
+    maxWarnings = 0
+    maxErrors = 0
+
+    dependencies {
+        checkstyle "com.puppycrawl.tools:checkstyle:8.8"
+        checkstyle "com.google.guava:guava:23.5-jre"
+    }
+
+}
